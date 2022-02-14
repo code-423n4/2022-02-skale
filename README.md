@@ -72,6 +72,33 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 
 This repo will be made public before the start of the contest. (C4 delete this line when made public)
 
+## DKG & BLS signature
+
+SKALE Network is a network of nodes running by different validators which are running SKALE chains.
+Each SKALE chain running on 16 randomly picked nodes and consume some part of node(1/32, 1/8, 1).
+Creating of schain is a on chain operation in SKALE Manager contracts.
+After transaction of creating a SKALE chain "A" was sent, DKG round between all these 16 nodes started.
+During DKG round each party should generate and send encrypted key share and receive and decrypt key shares
+from other parties. When everyone sent and received all information each party should send a tx that
+everything is good. After the last transaction was sent common BLS public key of SKALE chain "A"
+would be calculated and stored in SKALE Manager contracts.
+
+After successful DKG round between nodes, SKALE chain "A" would start working(blockchain is spinned up &
+all services start working). Each node has its own BLS private key, and the common BLS public key stored
+in SKALE Manager contracts. When new block is mined on a SKALE chain "A" that means that at least 11 of 16
+nodes signed this block by BLS private key and this block was verified by common BLS public key of SKALE
+chain "A". Also during each transfer (Mainnet -> Schain), (Schain -> Mainnet) and (Schain -> Schain)
+BLS signature would be verified.
+- (Mainnet -> Schain "A"), (Schain "A" -> Mainnet) - BLS signature would be verified by common BLS public key of SKALE chain "A".
+- (Schain "A" -> Schain "B") - BLS signature would be verified by common BLS public key of SKALE chain "B".
+
+To read more about DKG & BLS:
+- https://skale.network/blog/bls-deep-dive/
+- https://docs.skale.network/technology/intro-ecc
+- https://docs.skale.network/technology/dkg-bls
+
+By the way DKG & BLS was audited.
+
 [ ⭐️ SPONSORS ADD INFO HERE ]
 
 | Contract Name                                  | Lines of Code |
