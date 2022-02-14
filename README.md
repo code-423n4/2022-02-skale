@@ -110,38 +110,115 @@ This repo will be made public before the start of the contest. (C4 delete this l
 | `schain/tokens/ERC1155OnChain.sol`             |               |
 | **Total**                                      |               |
 
-
 ## SKALE Network - IMA Bridge
 
-The SKALE Network is an Ethereum-native multichain network, where dApps run on dApp-specific chains. The entire network, its chains, and validators are orchestrated by SKALE Manager contracts, which are deployed on Ethereum mainnet. 
+The SKALE Network is an Ethereum-native multichain network, where dApps run on dApp-specific SKALE chains. The entire network, its chains, and validators are orchestrated by SKALE Manager contracts, which are deployed on Ethereum mainnet. 
 
-Each chain is supported by 16 randomly selected nodes in the SKALE Network. Each node runs SKALE software, and communicates with other SKALE chains and Ethereum. 
+Each SKALE chain is supported by 16 randomly selected nodes in the SKALE Network. Each node runs SKALE software, and communicates with other SKALE chains and Ethereum.
+
+SKALE chains operate in a cost-free gas environment using a native gas token called sFUEL. sFUEL has no economic value, and is allocated from the SKALE chain owner (SKALE chain owner is the dApp developer who operates a dApps-specific SKALE chain). Owners are free to use any way to distribute sFUEL to end-users, either by onboarding, faucet, or allowing end-users to run a small PoW script.
+
+## SKALE Network flows
+
+### Example use case 1
+
+A Dapp Developer (say *TRISWAP*) desires a "gas-free" platform for its DEX. *TRISWAP* requests a SKALE chain from the network and deposits SKL tokes for leasing a SKALE chain. The SKALE chain is created, designates *TRISWAP*'s multisig as the owner, and IMA SKALE chain contracts are pre-deployed on this chain. TRISWAP can then begin to customize the IMA bridge settings, and permission system.
+
+TRISWAP, being a stablecoin-only DEX, decides to only allow specific ERC20 stablecoins. TRISWAP, with whitelist enabled, adds the stablecoin contracts to IMA mainnet designating it's SKALE chain name. https://docs.skale.network/ima/1.2.x/managing-erc20#_3_register_ethereum_mainnet_contract_to_ima.
+
+TRISWAP enables automatic deployment, such that any time a user first deposits any one of the whitelisted stablecoins, a token clone (ERC20OnChain.sol) is created and mapped/linked.  Any subsequent deposit of this token by any other user will use this mapping.  Once a token is linked to it's mainnet contract, it cannot be relinked.
+
+TRISWAP wishes to improve the exit process. The out-of-the-box exit process requires end-users to first deposit ETH into a CommunityPool. This CommunityPool is used to reimburse SKALE nodes that submit the exit transaction to Ethereum. Because of Ethereum network gas volatility, the deposit required for safe exits is more than the exit transaction itself. TRISWAP wishes to subsidize the exit process from a specific wallet. TRISWAP registers extra contracts on Ethereum, and deploys new contracts such that each user exit pulls from a single wallet on Ethereum.
+
+### Example use case 2
+
+A dApp developer (say *ETHMan*) desires a "gas-free" platform for its Play2Earn game. As in the above example, ETHMan is provisioned a SKALE chain. ETHMan 
+
 
 The IMA Bridge is the native bridge for all SKALE chains: enabling messages to be sent between Ethereum and SKALE chains, and between any two SKALE chains. 
 
 The IMA Bridge consists of four parts:
 
-1. Message Proxy contracts (Ethereum + SKALE chains)
-2. Deposit Box contracts (on Ethereum)
-3. Token Manager contracts (on SKALE chains)
-4. IMA Agent - a containerized service on each SKALE chain node that relays messages between chains.
+1.  Message Proxy contracts (Ethereum + SKALE chains)
+2.  Deposit Box contracts (on Ethereum)
+3.  Token Manager contracts (on SKALE chains)
+4.  IMA Agent - a containerized service on each SKALE chain node that relays messages between chains.
 
-<img src="http://www.plantuml.com/plantuml/svg/ZP5TQiGW58NVxoekBc10ku59cNaeRI3GRa3CfGcD6hm6KahsNdz2dr8oFiWv7F4xNgySTOYBdS3vdl0U1mgqMFm1JCluQI8JH-yOnOrcpsF4PxyI2zICjwwSqf_a8egMc9F4BlZrk-Hsbh01xFbBss2JPScIa_yc2ceTyVxQlDtH37fqA4lAHXwL-_1VvB3LBbqPQhjevLaz1TiHIUqazJ19dP6UCkblkfTBVN_Uic5JjAfQGV9Prad0bLoVV-WN">
+![overview-diagram](http://www.plantuml.com/plantuml/svg/ZP91QiCm44NtSuh11mX8u-xZaYnAQmYq5n3Aq9ZQKl0ea59ozqgMwABOs5vzwGr-7pHx2MOCjw47vy-Cnt3XaMy3_W36p_g-PniwxmIh0r-zT06V_PsbGYDuE4rJvfDTmAfbaHZnDFhxzyI7gu87GE4lRODDYXEB9xL8z28Xo4MhzzVcxOZsOZg7Qg9YrLpj3__53blZuY_7t3iCQgsuXiUSIHUJtcpIQoQQDr4nqMOJhPdgULDTJFLcKxrcUagclrtQxV9h_xiWIBVf85Qbh7FMALFE196LUGq0UtRdjAo_)
+
+ifndef:
+
+<figcaption>High Level Architecture. Any SKALE chain may be connected with IMA Bridge to Ethereum or another SKALE chain. Here is an example of four SKALE chains where SKALE chain 1 and 3 are connected to Ethereum, and SKALE chain 2 is connected to SKALE chain 1. SKALE chain 4 is not connected to any other chain. The IMA Agent is a separate multiple instance resource that listens and shuttles messages between chains.</figcaption>
 
 ### Setup
 
 ### General Flows
 
+Setup and development is covered in detail here: <https://docs.skale.network>
+
+👀 current audit scope covers IMA version v1.2.x <https://docs.skale.network/ima/1.2.x/> (be sure the version selector on the top right reads `1.2.x Preview`)
+
+Getting Started <https://docs.skale.network/ima/1.2.x/getting-started>
+
+Diagramed flows <https://docs.skale.network/ima/1.2.x/flows>
+
 #### Ethereum --> SKALE deposit
 
- 
+<https://docs.skale.network/ima/1.2.x/transferring-eth>
+<https://docs.skale.network/ima/1.2.x/managing-erc20>
+<https://docs.skale.network/ima/1.2.x/managing-erc721>
+<https://docs.skale.network/ima/1.2.x/managing-erc1155>
+
 #### SKALE --> Ethereum exit
 
+<https://docs.skale.network/ima/1.2.x/transferring-eth#_retrieve_eth>
+<https://docs.skale.network/ima/1.2.x/managing-erc20#_2_exit_from_skale_chain>
+<https://docs.skale.network/ima/1.2.x/managing-erc721#_2_exit_from_skale_chain>
+<https://docs.skale.network/ima/1.2.x/managing-erc1155#_2_exit_from_skale_chain>
+<https://docs.skale.network/ima/1.2.x/funding-exits>
 
 #### SKALE --> SKALE transfer
 
+<https://docs.skale.network/ima/1.2.x/s2s-transferring-erc20>
 
+### Adding custom messages
+
+<https://docs.skale.network/ima/1.2.x/message-proxy>
+
+### Access Control
+
+IMA Bridge uses OpenZeppelin's Access Control framework to set roles and permissions. A developer overview is here: 
+
+<https://docs.skale.network/ima/1.2.x/access-control>
+
+### Prior Audits
+
+IMA Bridge
+
+-   Nov 2020 <https://certificate.quantstamp.com/full/skale-proxy-contracts>
+-   Jun 2021 <https://bramah.systems/audits/SKALE_Audit_Bramah.pdf>
+
+Cryptography contracts (FieldOperations.sol, Precompile.sol, SkaleVerifier.sol)
+
+-   <https://consensys.net/diligence/audits/2020/10/skale-network/appendices/SKALE%20Audit%20V2.pdf>
+
+### Note on contract sizes
+
+SKALE chains can support contract sizes greater than sizes allowed on Ethereum (24kB), therefore you will notice some TokenManager contract sizes > 24kB.
+
+### Special Interfaces
+
+IMA Bridge mainnet interaction with SKALE Manager:
+
+-   requesting SKALE chain names
+-   verifying BLS signatures on Ethereum mainnet
+
+IMA Bridge SKALE chain contracts load config file BLS public keys for a SKALE chain using a special Precompile.sol contract.
+
+### Gas Optimization Notes
+
+Everything on the SKALE chain operates in a cost-free gas environment, so no need for optimizations there (`schains/*`). Of course, gas optimization strategies are welcome for IMA contracts on Ethereum mainnet.
 
 ### Upgradeability
 
-The IMA Bridge implements a transparent upgradeable proxy for the Mainnet contracts to be controlled by multisig and eventually governance. IMA contracts on SKALE chains are upgradeable only by the SKALE chain owner.
+The IMA Bridge implements OpenZepplin's `contracts-upgradeable` system. Mainnet contracts are upgradeable by mutlisig and eventually governance. SKALE chains are upgradeable only by the SKALE chain owner which may be multisig or governance at the discretion of the SKALE chain owner.
