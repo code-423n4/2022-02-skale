@@ -4,8 +4,8 @@ This `README.md` contains a set of checklists for our contest collaboration.
 
 Your contest will use two repos: 
 
--   **a _contest_ repo** (this one), which is used for scoping your contest and for providing information to contestants (wardens)
--   **a _findings_ repo**, where issues are submitted. 
+-   **a *contest* repo** (this one), which is used for scoping your contest and for providing information to contestants (wardens)
+-   **a *findings* repo**, where issues are submitted. 
 
 Ultimately, when we launch the contest, this contest repo will be made public and will contain the smart contracts to be reviewed and all the information needed for contest participants. The findings repo will be made public after the contest is over and your team has mitigated the identified issues.
 
@@ -51,11 +51,11 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 -   [ ] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
 -   [ ] Modify the bottom of this `README.md` file to describe how your code is supposed to work with links to any relevent documentation and any other criteria/details that the C4 Wardens should keep in mind when reviewing. ([Here's a well-constructed example.](https://github.com/code-423n4/2021-06-gro/blob/main/README.md))
 -   [ ] Please have final versions of contracts and documentation added/updated in this repo **no less than 8 hours prior to contest start time.**
--   [ ] Ensure that you have access to the _findings_ repo where issues will be submitted.
+-   [ ] Ensure that you have access to the *findings* repo where issues will be submitted.
 -   [ ] Promote the contest on Twitter (optional: tag in relevant protocols, etc.)
 -   [ ] Share it with your own communities (blog, Discord, Telegram, email newsletters, etc.)
 -   [ ] Optional: pre-record a high-level overview of your protocol (not just specific smart contract functions). This saves wardens a lot of time wading through documentation.
--   [ ] Designate someone (or a team of people) to monitor DMs & questions in the C4 Discord (**#questions** channel) daily (Note: please _don't_ discuss issues submitted by wardens in an open channel, as this could give hints to other wardens.)
+-   [ ] Designate someone (or a team of people) to monitor DMs & questions in the C4 Discord (**#questions** channel) daily (Note: please *don't* discuss issues submitted by wardens in an open channel, as this could give hints to other wardens.)
 -   [ ] Delete this checklist and all text above the line below when you're ready.
 
 * * *
@@ -112,7 +112,7 @@ This repo will be made public before the start of the contest. (C4 delete this l
 
 ## SKALE Network - IMA Bridge
 
-The SKALE Network is an Ethereum-native multichain network, where dApps run on dApp-specific SKALE chains. The entire network, its chains, and validators are orchestrated by SKALE Manager contracts, which are deployed on Ethereum mainnet. 
+The SKALE Network is an Ethereum-native multichain network, where dApps run on dApp-specific SKALE chains. The entire network, its chains, and validators are orchestrated by SKALE Manager contracts, which are deployed on Ethereum mainnet.
 
 Each SKALE chain is supported by 16 randomly selected nodes in the SKALE Network. Each node runs SKALE software, and communicates with other SKALE chains and Ethereum.
 
@@ -124,7 +124,7 @@ SKALE chains operate in a cost-free gas environment using a native gas token cal
 
 A Dapp Developer (say *TRISWAP*) desires a "gas-free" platform for its DEX. *TRISWAP* requests a SKALE chain from the network and deposits SKL tokes for leasing a SKALE chain. The SKALE chain is created, designates *TRISWAP*'s multisig as the owner, and IMA SKALE chain contracts are pre-deployed on this chain. TRISWAP can then begin to customize the IMA bridge settings, and permission system.
 
-TRISWAP, being a stablecoin-only DEX, decides to only allow specific ERC20 stablecoins. TRISWAP, with whitelist enabled, adds the stablecoin contracts to IMA mainnet designating it's SKALE chain name. https://docs.skale.network/ima/1.2.x/managing-erc20#_3_register_ethereum_mainnet_contract_to_ima.
+TRISWAP, being a stablecoin-only DEX, decides to only allow specific ERC20 stablecoins. TRISWAP, with whitelist enabled, adds the stablecoin contracts to IMA mainnet designating it's SKALE chain name. <https://docs.skale.network/ima/1.2.x/managing-erc20#_3_register_ethereum_mainnet_contract_to_ima>.
 
 TRISWAP enables automatic deployment, such that any time a user first deposits any one of the whitelisted stablecoins, a token clone (ERC20OnChain.sol) is created and mapped/linked.  Any subsequent deposit of this token by any other user will use this mapping.  Once a token is linked to it's mainnet contract, it cannot be relinked.
 
@@ -132,17 +132,16 @@ TRISWAP wishes to improve the exit process. The out-of-the-box exit process requ
 
 ### Example use case 2
 
-A dApp developer (say *ETHMan*) desires a "gas-free" platform for its Play2Earn game. As in the above example, ETHMan is provisioned a SKALE chain. ETHMan 
+A dApp developer (say *ETHMan*) desires a "gas-free" platform for its Play2Earn game. As in the above example, ETHMan is provisioned a SKALE chain. ETHMan
 
-
-The IMA Bridge is the native bridge for all SKALE chains: enabling messages to be sent between Ethereum and SKALE chains, and between any two SKALE chains. 
+The IMA Bridge is the native bridge for all SKALE chains: enabling messages to be sent between Ethereum and SKALE chains, and between any two SKALE chains.
 
 The IMA Bridge consists of four parts:
 
-1.  Message Proxy contracts (Ethereum + SKALE chains)
-2.  Deposit Box contracts (on Ethereum)
-3.  Token Manager contracts (on SKALE chains)
-4.  IMA Agent - a containerized service on each SKALE chain node that relays messages between chains.
+1. Message Proxy contracts (Ethereum + SKALE chains)
+2. Deposit Box contracts (on Ethereum)
+3. Token Manager contracts (on SKALE chains)
+4. IMA Agent - a containerized service on each SKALE chain node that relays messages between chains.
 
 ![overview-diagram](http://www.plantuml.com/plantuml/svg/ZP91QiCm44NtSuh11mX8u-xZaYnAQmYq5n3Aq9ZQKl0ea59ozqgMwABOs5vzwGr-7pHx2MOCjw47vy-Cnt3XaMy3_W36p_g-PniwxmIh0r-zT06V_PsbGYDuE4rJvfDTmAfbaHZnDFhxzyI7gu87GE4lRODDYXEB9xL8z28Xo4MhzzVcxOZsOZg7Qg9YrLpj3__53blZuY_7t3iCQgsuXiUSIHUJtcpIQoQQDr4nqMOJhPdgULDTJFLcKxrcUagclrtQxV9h_xiWIBVf85Qbh7FMALFE196LUGq0UtRdjAo_)
 
@@ -187,7 +186,7 @@ Diagramed flows <https://docs.skale.network/ima/1.2.x/flows>
 
 ### Access Control
 
-IMA Bridge uses OpenZeppelin's Access Control framework to set roles and permissions. A developer overview is here: 
+IMA Bridge uses OpenZeppelin's Access Control framework to set roles and permissions. A developer overview is here:
 
 <https://docs.skale.network/ima/1.2.x/access-control>
 
@@ -195,12 +194,12 @@ IMA Bridge uses OpenZeppelin's Access Control framework to set roles and permiss
 
 IMA Bridge
 
--   Nov 2020 <https://certificate.quantstamp.com/full/skale-proxy-contracts>
--   Jun 2021 <https://bramah.systems/audits/SKALE_Audit_Bramah.pdf>
+- Nov 2020 <https://certificate.quantstamp.com/full/skale-proxy-contracts>
+- Jun 2021 <https://bramah.systems/audits/SKALE_Audit_Bramah.pdf>
 
 Cryptography contracts (FieldOperations.sol, Precompile.sol, SkaleVerifier.sol)
 
--   <https://consensys.net/diligence/audits/2020/10/skale-network/appendices/SKALE%20Audit%20V2.pdf>
+- <https://consensys.net/diligence/audits/2020/10/skale-network/appendices/SKALE%20Audit%20V2.pdf>
 
 ### Note on contract sizes
 
@@ -210,10 +209,14 @@ SKALE chains can support contract sizes greater than sizes allowed on Ethereum (
 
 IMA Bridge mainnet interaction with SKALE Manager:
 
--   requesting SKALE chain names
--   verifying BLS signatures on Ethereum mainnet
+- requesting SKALE chain names
+- verifying BLS signatures on Ethereum mainnet
 
 IMA Bridge SKALE chain contracts load config file BLS public keys for a SKALE chain using a special Precompile.sol contract.
+
+### Protections
+
+There is a limit of 1M of gas units for a message processing. If the limit is exceeded the call to external contract is reverted. It is more than enough to call transfer function of a regular ERC20 token or similar but in general case requires a sender to ensure that target smart contract does not consume too many gas. As an example a transferring of big batch of ERC1155 tokens may overflow the limit. In this case the message will be considered as processed but a state of a smart contract on a target chain will not be modified.
 
 ### Gas Optimization Notes
 
