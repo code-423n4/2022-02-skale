@@ -204,11 +204,38 @@ To send NFTs to eth-cat chain, and since there are many nft contracts, eth-dog o
 
 ## Setup
 
-TODO
+You need nodejs 14 or later and yarn to be installed on your machine
+
+1. clone [the repo](https://github.com/skalenetwork/IMA)
+1. run
+
+   ```bash
+   yarn install
+   ```
+
+1. go to `proxy` folder
+
+    ```bash
+    cd proxy
+    ```
+
+### Unit tests
+
+To run all unit tests run
+
+```bash
+yarn test
+```
+
+If you want to run any particular test (for example `MessageProxy.ts`) use
+
+```bash
+npx hardhat test test/MessageProxy.ts
+```
 
 ## Development Flows
 
-Setup and development is covered in detail here: <https://docs.skale.network>
+Developer setup and usage is covered in detail here: <https://docs.skale.network>
 
 👀 current audit scope covers IMA version v1.2.x <https://docs.skale.network/ima/1.2.x/> (be sure the version selector on the top right reads `1.2.x Preview`)
 
