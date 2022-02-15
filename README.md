@@ -152,6 +152,35 @@ ifndef:
 
 ### Setup
 
+You need nodejs 14 or later and yarn to be installed on your machine
+
+1. clone [the repo](https://github.com/skalenetwork/IMA)
+1. run
+
+   ```bash
+   yarn install
+   ```
+
+1. go to `proxy` folder
+
+    ```bash
+    cd proxy
+    ```
+
+#### Unit tests
+
+To run all unit tests run
+
+```bash
+yarn test
+```
+
+If you want to run any particular test (for example `MessageProxy.ts`) use
+
+```bash
+npx hardhat test test/MessageProxy.ts
+```
+
 ### General Flows
 
 Setup and development is covered in detail here: <https://docs.skale.network>
