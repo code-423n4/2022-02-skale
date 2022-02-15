@@ -4,8 +4,8 @@ This `README.md` contains a set of checklists for our contest collaboration.
 
 Your contest will use two repos: 
 
--   **a _contest_ repo** (this one), which is used for scoping your contest and for providing information to contestants (wardens)
--   **a _findings_ repo**, where issues are submitted. 
+-   **a *contest* repo** (this one), which is used for scoping your contest and for providing information to contestants (wardens)
+-   **a *findings* repo**, where issues are submitted. 
 
 Ultimately, when we launch the contest, this contest repo will be made public and will contain the smart contracts to be reviewed and all the information needed for contest participants. The findings repo will be made public after the contest is over and your team has mitigated the identified issues.
 
@@ -51,11 +51,11 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 -   [ ] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
 -   [ ] Modify the bottom of this `README.md` file to describe how your code is supposed to work with links to any relevent documentation and any other criteria/details that the C4 Wardens should keep in mind when reviewing. ([Here's a well-constructed example.](https://github.com/code-423n4/2021-06-gro/blob/main/README.md))
 -   [ ] Please have final versions of contracts and documentation added/updated in this repo **no less than 8 hours prior to contest start time.**
--   [ ] Ensure that you have access to the _findings_ repo where issues will be submitted.
+-   [ ] Ensure that you have access to the *findings* repo where issues will be submitted.
 -   [ ] Promote the contest on Twitter (optional: tag in relevant protocols, etc.)
 -   [ ] Share it with your own communities (blog, Discord, Telegram, email newsletters, etc.)
 -   [ ] Optional: pre-record a high-level overview of your protocol (not just specific smart contract functions). This saves wardens a lot of time wading through documentation.
--   [ ] Designate someone (or a team of people) to monitor DMs & questions in the C4 Discord (**#questions** channel) daily (Note: please _don't_ discuss issues submitted by wardens in an open channel, as this could give hints to other wardens.)
+-   [ ] Designate someone (or a team of people) to monitor DMs & questions in the C4 Discord (**#questions** channel) daily (Note: please *don't* discuss issues submitted by wardens in an open channel, as this could give hints to other wardens.)
 -   [ ] Delete this checklist and all text above the line below when you're ready.
 
 * * *
@@ -164,6 +164,7 @@ SKALE chains are deployed and operated by SKALE chain owners - which may be a da
 
 SKALE chains operate in a gas-free environment using a native gas token called sFUEL. sFUEL has no economic value and is allocated from the SKALE chain owner (SKALE chain owner is a dApp developer or community who operates a dApp-specific SKALE chain). Owners are free to use various methods to distribute sFUEL to end-users, either by onboarding, faucet, or allowing end-users to run a small PoW script. SKALE chain gas serves a way to meter or limit transaction usage on the SKALE chain to prevent malicious execution for DDoS attacks.
 
+
 ### IMA Bridge Architecture
 
 The IMA Bridge is the native bridge for all SKALE chains: enabling messages to be sent between Ethereum and SKALE chains and between any two SKALE chains. 
@@ -172,10 +173,10 @@ Unlink other bridges, IMA bridge is designed to be customized, modified and tail
 
 The IMA Bridge consists of four parts:
 
-1.  Message Proxy contracts (Ethereum + SKALE chains)
-2.  Deposit Box contracts (on Ethereum)
-3.  Token Manager contracts (on SKALE chains)
-4.  IMA Agent - a containerized service on each SKALE chain node that relays messages between chains.
+1. Message Proxy contracts (Ethereum + SKALE chains)
+2. Deposit Box contracts (on Ethereum)
+3. Token Manager contracts (on SKALE chains)
+4. IMA Agent - a containerized service on each SKALE chain node that relays messages between chains.
 
 ![overview-diagram](http://www.plantuml.com/plantuml/svg/ZP91QiCm44NtSuh11mX8u-xZaYnAQmYq5n3Aq9ZQKl0ea59ozqgMwABOs5vzwGr-7pHx2MOCjw47vy-Cnt3XaMy3_W36p_g-PniwxmIh0r-zT06V_PsbGYDuE4rJvfDTmAfbaHZnDFhxzyI7gu87GE4lRODDYXEB9xL8z28Xo4MhzzVcxOZsOZg7Qg9YrLpj3__53blZuY_7t3iCQgsuXiUSIHUJtcpIQoQQDr4nqMOJhPdgULDTJFLcKxrcUagclrtQxV9h_xiWIBVf85Qbh7FMALFE196LUGq0UtRdjAo_)
 
@@ -385,12 +386,12 @@ FYI: [DKG & BLS cryptography was audited](#prior-audits).
 
 IMA Bridge
 
--   Nov 2020 <https://certificate.quantstamp.com/full/skale-proxy-contracts>
--   Jun 2021 <https://bramah.systems/audits/SKALE_Audit_Bramah.pdf>
+- Nov 2020 <https://certificate.quantstamp.com/full/skale-proxy-contracts>
+- Jun 2021 <https://bramah.systems/audits/SKALE_Audit_Bramah.pdf>
 
 Cryptography contracts (DKG + BLS, and FieldOperations.sol, Precompile.sol, SkaleVerifier.sol)
 
--   <https://consensys.net/diligence/audits/2020/10/skale-network/appendices/SKALE%20Audit%20V2.pdf>
+- <https://consensys.net/diligence/audits/2020/10/skale-network/appendices/SKALE%20Audit%20V2.pdf>
 
 ## Note on contract sizes
 
@@ -400,11 +401,16 @@ SKALE chains can support contract sizes greater than sizes allowed on Ethereum (
 
 IMA Bridge mainnet interaction with SKALE Manager:
 
--   requesting SKALE chain names
--   verifying BLS signatures on Ethereum mainnet
+- requesting SKALE chain names
+- verifying BLS signatures on Ethereum mainnet
 
 IMA Bridge SKALE chain contracts load config file BLS public keys for a SKALE chain using a special Precompile.sol contract.
+
 ## Protections
+
+### Gas Limit
+
+There is a limit of 1M of gas units for a message processing. If the limit is exceeded the call to external contract is reverted. It is more than enough to call transfer function of a regular ERC20 token or similar but in general case requires a sender to ensure that target smart contract does not consume too many gas. As an example a transferring of big batch of ERC1155 tokens may overflow the limit. In this case the message will be considered as processed but a state of a smart contract on a target chain will not be modified.
 
 ### Kill 
 
@@ -429,6 +435,7 @@ Everything on the SKALE chain operates in a gas-free environment, so no need for
 The IMA Bridge implements OpenZeppelin's `contracts-upgradeable` system. Mainnet contracts are upgradeable by multisig and eventually governance. SKALE chains are upgradeable only by the SKALE chain owner which may be multisig or governance at the discretion of the SKALE chain owner.
 
 ## Areas of concern for Wardens
+
 We would like wardens to focus on any core functional logic, boundary case errors or similar issues which could be utilized by an attacker to steal funds or drain wallets. That said any errors may be submitted by wardens for review and potential reward as per the normal issue impact prioritization. Gas optimizations are welcome, please see [Gas Optimization Notes](#gas-optimization-nodes).
 
 If wardens are unclear on which areas to look at or which areas are important please feel free to ask in the contest Discord channel.
