@@ -4,8 +4,8 @@ This `README.md` contains a set of checklists for our contest collaboration.
 
 Your contest will use two repos: 
 
--   **a *contest* repo** (this one), which is used for scoping your contest and for providing information to contestants (wardens)
--   **a *findings* repo**, where issues are submitted. 
+-   **a _contest_ repo** (this one), which is used for scoping your contest and for providing information to contestants (wardens)
+-   **a _findings_ repo**, where issues are submitted. 
 
 Ultimately, when we launch the contest, this contest repo will be made public and will contain the smart contracts to be reviewed and all the information needed for contest participants. The findings repo will be made public after the contest is over and your team has mitigated the identified issues.
 
@@ -19,13 +19,13 @@ Some of the checklists in this doc are for **C4 (🐺)** and some of them are fo
 
 Under "SPONSORS ADD INFO HERE" heading below, include the following:
 
--   [X] Name of each contract and:
+-   [x] Name of each contract and:
     -   [ ] source lines of code (excluding blank lines and comments) in each
     -   [ ] external contracts called in each
     -   [ ] libraries used in each
--   [X] Describe any novel or unique curve logic or mathematical models implemented in the contracts
--   [X] Does the token conform to the ERC-20 standard? In what specific ways does it differ?
--   [X] Describe anything else that adds any special logic that makes your approach unique
+-   [x] Describe any novel or unique curve logic or mathematical models implemented in the contracts
+-   [x] Does the token conform to the ERC-20 standard? In what specific ways does it differ?
+-   [x] Describe anything else that adds any special logic that makes your approach unique
 -   [ ] Identify any areas of specific concern in reviewing the code
 -   [ ] Add all of the code to this repo that you want reviewed
 -   [ ] Create a PR to this repo with the above changes.
@@ -51,11 +51,11 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 -   [ ] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
 -   [ ] Modify the bottom of this `README.md` file to describe how your code is supposed to work with links to any relevent documentation and any other criteria/details that the C4 Wardens should keep in mind when reviewing. ([Here's a well-constructed example.](https://github.com/code-423n4/2021-06-gro/blob/main/README.md))
 -   [ ] Please have final versions of contracts and documentation added/updated in this repo **no less than 8 hours prior to contest start time.**
--   [ ] Ensure that you have access to the *findings* repo where issues will be submitted.
+-   [ ] Ensure that you have access to the _findings_ repo where issues will be submitted.
 -   [ ] Promote the contest on Twitter (optional: tag in relevant protocols, etc.)
 -   [ ] Share it with your own communities (blog, Discord, Telegram, email newsletters, etc.)
 -   [ ] Optional: pre-record a high-level overview of your protocol (not just specific smart contract functions). This saves wardens a lot of time wading through documentation.
--   [ ] Designate someone (or a team of people) to monitor DMs & questions in the C4 Discord (**#questions** channel) daily (Note: please *don't* discuss issues submitted by wardens in an open channel, as this could give hints to other wardens.)
+-   [ ] Designate someone (or a team of people) to monitor DMs & questions in the C4 Discord (**#questions** channel) daily (Note: please _don't_ discuss issues submitted by wardens in an open channel, as this could give hints to other wardens.)
 -   [ ] Delete this checklist and all text above the line below when you're ready.
 
 * * *
@@ -73,7 +73,8 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 This repo will be made public before the start of the contest. (C4 delete this line when made public)
 
 [ ⭐️ SPONSORS ADD INFO HERE ]
-# Hello from SKALE 
+
+# Hello from SKALE
 
 The SKALE core team is extremely excited to present the IMA Bridge to the C4 community for audit. The core team will be ready to answer all your questions help with any onboarding, and clarify anything that may be confusing.
 
@@ -81,34 +82,50 @@ Best of luck!
 
 _SKALE Core team_
 
+## tl,dr
+
+-   SKALE Network is a multichain Ethereum-native PoS gas-free scaling network of > 150 nodes.
+-   Each chain is provisioned across 16 random nodes and is [customized by a SKALE chain owner](#Dapp-specific) (a dapp developer, community, or DAO).
+-   SKALE Chains run in a gas free environment, with a [free gas-token (sFUEL) used to meter transactions against DDoS](#Gas-free-Environment).
+-   The [network is orchestrated](https://skale.network/blog/the-skale-network-primer/) (chain provisioning, node registration, delegation, DKG) from smart contracts on Ethereum (SKALE Manager).
+-   **Interchain Messaging Agent (IMA)** Bridge is the native bridge for SKALE.
+-   The base layer of the bridge is a [Message Proxy system](#Message-Proxy-System), that shuttles messages between chains through an off-chain IMA agent and uses [BLS threshold signatures](#Distributed-Key-Generation-DKG-amp-BLS-signature) to sign messages.
+-   [Two main sets of bridge contracts](#IMA-Bridge-Architecture):
+    -   DepositBoxes on Ethereum lock tokens and send messages to connected SKALE chains.
+    -   TokenManagers are predeployed on each SKALE chain and lock tokens, create clones, and send messages to connected chains.
+-   The Bridge has some [default flows](#Development-Flows) for moving tokens between Ethereum and SKALE, and between SKALE chains.
+-   Bridge flow can be [customized by developers to support any arbitrary message or flow](#Adding-custom-messages).
+-   Exit transactions are conducted by one of nodes of the SKALE chain and is [reimbursed using a default scheme](#Exit-reimbursement).
+
 ## Useful links
 
-- [SKALE Network](https://skale.network)
-- [Twitter: @SkaleNetwork](https://twitter.com/SkaleNetwork)
-- [SKALE Developer Discord](https://discord.gg/PxX3K43JCm)
-- [SKALE Documentation](https://docs.skale.network/)
-- [Youtube videos](https://www.youtube.com/skale)
+-   [SKALE Network](https://skale.network)
+-   [Twitter: @SkaleNetwork](https://twitter.com/SkaleNetwork)
+-   [SKALE Developer Discord](https://discord.gg/PxX3K43JCm)
+-   [SKALE Documentation](https://docs.skale.network/)
+-   [Youtube videos](https://www.youtube.com/skale)
 
 ### Relevant Blog Posts
 
-- https://skale.network/blog/introduction-of-the-skale-ima-bridge/
+-   <https://skale.network/blog/the-skale-network-primer/>
+-   <https://skale.network/blog/introduction-of-the-skale-ima-bridge/>
 
 #### Older Video Demos
-- ERC20 transfer Rinkeby <-> SKALE demo, https://www.youtube.com/watch?v=gDj6QRbuFsQ&t=246s
-- ERC721 transfer Rinkeby <-> SKALE demo https://www.youtube.com/watch?v=s8N_d_EoTbk
+
+-   ERC20 transfer Rinkeby &lt;-> SKALE demo, <https://www.youtube.com/watch?v=gDj6QRbuFsQ&t=246s>
+-   ERC721 transfer Rinkeby &lt;-> SKALE demo <https://www.youtube.com/watch?v=s8N_d_EoTbk>
 
 ## Contact us
 
 Discord handles:
 
-- @chadwick#5132
-- @Ganna | SKALE#9107
-- @Dmytro#9331
+-   @chadwick#5132
+-   @Ganna | SKALE#9107
+-   @Dmytro#9331
 
 ## Video walk-through of smart-contracts
 
 TODO
-
 
 | Contract Name                                  | Lines of Code |
 | ---------------------------------------------- | ------------- |
@@ -150,7 +167,7 @@ NOTE: contracts in the `extensions/*` folder are example contracts demonstrating
 
 ## SKALE Network - IMA Bridge
 
-### Protocol Overview 
+### Protocol Overview
 
 The SKALE Network is an Ethereum-native multichain network, where dApps run on dApp-specific SKALE chains. SKALE Manager contracts orchestrate the entire network, its chains, and validators. SKALE Manager is deployed and operating on the Ethereum mainnet. 
 
@@ -164,7 +181,6 @@ SKALE chains are deployed and operated by SKALE chain owners - which may be a da
 
 SKALE chains operate in a gas-free environment using a native gas token called sFUEL. sFUEL has no economic value and is allocated from the SKALE chain owner (SKALE chain owner is a dApp developer or community who operates a dApp-specific SKALE chain). Owners are free to use various methods to distribute sFUEL to end-users, either by onboarding, faucet, or allowing end-users to run a small PoW script. SKALE chain gas serves a way to meter or limit transaction usage on the SKALE chain to prevent malicious execution for DDoS attacks.
 
-
 ### IMA Bridge Architecture
 
 The IMA Bridge is the native bridge for all SKALE chains: enabling messages to be sent between Ethereum and SKALE chains and between any two SKALE chains. 
@@ -173,10 +189,10 @@ Unlink other bridges, IMA bridge is designed to be customized, modified and tail
 
 The IMA Bridge consists of four parts:
 
-1. Message Proxy contracts (Ethereum + SKALE chains)
-2. Deposit Box contracts (on Ethereum)
-3. Token Manager contracts (on SKALE chains)
-4. IMA Agent - a containerized service on each SKALE chain node that relays messages between chains.
+1.  Message Proxy contracts (Ethereum + SKALE chains)
+2.  Deposit Box contracts (on Ethereum)
+3.  Token Manager contracts (on SKALE chains)
+4.  IMA Agent - a containerized service on each SKALE chain node that relays messages between chains.
 
 ![overview-diagram](http://www.plantuml.com/plantuml/svg/ZP91QiCm44NtSuh11mX8u-xZaYnAQmYq5n3Aq9ZQKl0ea59ozqgMwABOs5vzwGr-7pHx2MOCjw47vy-Cnt3XaMy3_W36p_g-PniwxmIh0r-zT06V_PsbGYDuE4rJvfDTmAfbaHZnDFhxzyI7gu87GE4lRODDYXEB9xL8z28Xo4MhzzVcxOZsOZg7Qg9YrLpj3__53blZuY_7t3iCQgsuXiUSIHUJtcpIQoQQDr4nqMOJhPdgULDTJFLcKxrcUagclrtQxV9h_xiWIBVf85Qbh7FMALFE196LUGq0UtRdjAo_)
 
@@ -206,14 +222,15 @@ To send NFTs to eth-cat chain, and since there are many nft contracts, eth-dog o
 
 You need nodejs 14 or later and yarn to be installed on your machine
 
-1. clone [the repo](https://github.com/skalenetwork/IMA)
-1. run
+1.  clone [the repo](https://github.com/skalenetwork/IMA)
 
-   ```bash
-   yarn install
-   ```
+2.  run
 
-1. go to `proxy` folder
+    ```bash
+    yarn install
+    ```
+
+3.  go to `proxy` folder
 
     ```bash
     cd proxy
@@ -245,29 +262,29 @@ Diagramed flows <https://docs.skale.network/ima/1.2.x/flows>
 
 ### Ethereum --> SKALE deposit
 
-- <https://docs.skale.network/ima/1.2.x/transferring-eth>
-- <https://docs.skale.network/ima/1.2.x/managing-erc20>
-- <https://docs.skale.network/ima/1.2.x/managing-erc721>
-- <https://docs.skale.network/ima/1.2.x/managing-erc1155>
+-   <https://docs.skale.network/ima/1.2.x/transferring-eth>
+-   <https://docs.skale.network/ima/1.2.x/managing-erc20>
+-   <https://docs.skale.network/ima/1.2.x/managing-erc721>
+-   <https://docs.skale.network/ima/1.2.x/managing-erc1155>
 
 ### SKALE --> Ethereum exit
 
-- <https://docs.skale.network/ima/1.2.x/transferring-eth#_retrieve_eth>
-- <https://docs.skale.network/ima/1.2.x/managing-erc20#_2_exit_from_skale_chain>
-- <https://docs.skale.network/ima/1.2.x/managing-erc721#_2_exit_from_skale_chain>
-- <https://docs.skale.network/ima/1.2.x/managing-erc1155#_2_exit_from_skale_chain>
-- <https://docs.skale.network/ima/1.2.x/funding-exits>
+-   <https://docs.skale.network/ima/1.2.x/transferring-eth#_retrieve_eth>
+-   <https://docs.skale.network/ima/1.2.x/managing-erc20#_2_exit_from_skale_chain>
+-   <https://docs.skale.network/ima/1.2.x/managing-erc721#_2_exit_from_skale_chain>
+-   <https://docs.skale.network/ima/1.2.x/managing-erc1155#_2_exit_from_skale_chain>
+-   <https://docs.skale.network/ima/1.2.x/funding-exits>
 
 ### SKALE --> SKALE transfer
 
-- <https://docs.skale.network/ima/1.2.x/s2s-transferring-erc20>
+-   <https://docs.skale.network/ima/1.2.x/s2s-transferring-erc20>
 
 ### Adding custom messages
 
-SKALE chain owners can setup other contracts using the message proxy system. This allows developers to expand beyond the "out-of-the-box" functionalities of Deposit Box and Token Managers to support different flows (Mint NFTs on SKALE first, then send to Ethereum examples are https://github.com/skalenetwork/IMA/tree/develop/proxy/contracts/extensions and https://docs.skale.network/ima/1.2.x/flows#_erc7211155_skale_mint_first), send arbitrary messages, and more!
+SKALE chain owners can setup other contracts using the message proxy system. This allows developers to expand beyond the "out-of-the-box" functionalities of Deposit Box and Token Managers to support different flows (Mint NFTs on SKALE first, then send to Ethereum examples are <https://github.com/skalenetwork/IMA/tree/develop/proxy/contracts/extensions> and <https://docs.skale.network/ima/1.2.x/flows#_erc7211155_skale_mint_first>), send arbitrary messages, and more!
 
-- [read the section below](#message-proxy-system)
-- <https://docs.skale.network/ima/1.2.x/message-proxy>
+-   [read the section below](#message-proxy-system)
+-   <https://docs.skale.network/ima/1.2.x/message-proxy>
 
 ### Message Proxy System
 
@@ -413,12 +430,12 @@ FYI: [DKG & BLS cryptography was audited](#prior-audits).
 
 IMA Bridge
 
-- Nov 2020 <https://certificate.quantstamp.com/full/skale-proxy-contracts>
-- Jun 2021 <https://bramah.systems/audits/SKALE_Audit_Bramah.pdf>
+-   Nov 2020 <https://certificate.quantstamp.com/full/skale-proxy-contracts>
+-   Jun 2021 <https://bramah.systems/audits/SKALE_Audit_Bramah.pdf>
 
 Cryptography contracts (DKG + BLS, and FieldOperations.sol, Precompile.sol, SkaleVerifier.sol)
 
-- <https://consensys.net/diligence/audits/2020/10/skale-network/appendices/SKALE%20Audit%20V2.pdf>
+-   <https://consensys.net/diligence/audits/2020/10/skale-network/appendices/SKALE%20Audit%20V2.pdf>
 
 ## Note on contract sizes
 
@@ -428,8 +445,8 @@ SKALE chains can support contract sizes greater than sizes allowed on Ethereum (
 
 IMA Bridge mainnet interaction with SKALE Manager:
 
-- requesting SKALE chain names
-- verifying BLS signatures on Ethereum mainnet
+-   requesting SKALE chain names
+-   verifying BLS signatures on Ethereum mainnet
 
 IMA Bridge SKALE chain contracts load config file BLS public keys for a SKALE chain using a special Precompile.sol contract.
 
@@ -439,7 +456,7 @@ IMA Bridge SKALE chain contracts load config file BLS public keys for a SKALE ch
 
 There is a limit of 1M of gas units for a message processing. If the limit is exceeded the call to external contract is reverted. It is more than enough to call transfer function of a regular ERC20 token or similar but in general case requires a sender to ensure that target smart contract does not consume too many gas. As an example a transferring of big batch of ERC1155 tokens may overflow the limit. In this case the message will be considered as processed but a state of a smart contract on a target chain will not be modified.
 
-### Kill 
+### Kill
 
 In an extraordinary event, a SKALE chain and its Bridge may be killed if both the SKALE chain owner and the IMA mainnet admin role execute a kill process. Once killed, users are able to retrieve locked deposits.
 
@@ -449,9 +466,9 @@ Exits are rate limited to a default 5 minutes per message, and can be set by the
 
 ### Exit reimbursement
 
-Using the default exit process, users must fund their CommunityPool account before conducting an exit with 1,000,000 gas * gas Price in Wei at time of exit transaction submission. The actual exit transaction cost is deducted from this CommunityPool deposit, and users are able to withdraw any unused funds in their CommunityPool. An oracle process to retrieve a more accurate Ethereum gas Price is currently planned to be released. In an extraordinary event of a user not having sufficient funds in the Community Pool, the user is locked from subsequent exits until they refund the Community Pool, and in the meantime the SKALE chain owner wallet is used to reimburse nodes for the exit transaction.
+Using the default exit process, users must fund their CommunityPool account before conducting an exit with 1,000,000 gas \* gas Price in Wei at time of exit transaction submission. The actual exit transaction cost is deducted from this CommunityPool deposit, and users are able to withdraw any unused funds in their CommunityPool. An oracle process to retrieve a more accurate Ethereum gas Price is currently planned to be released. In an extraordinary event of a user not having sufficient funds in the Community Pool, the user is locked from subsequent exits until they refund the Community Pool, and in the meantime the SKALE chain owner wallet is used to reimburse nodes for the exit transaction.
 
-Note that SKALE chain owners may implement a different exit process than the default one described above, by using custom messages with the Messsage Proxy system.
+Note that SKALE chain owners may implement a different exit process than the default one described above, by using custom messages with the Message Proxy system.
 
 ## Gas Optimization Notes
 
@@ -463,6 +480,8 @@ The IMA Bridge implements OpenZeppelin's `contracts-upgradeable` system. Mainnet
 
 ## Areas of concern for Wardens
 
-We would like wardens to focus on any core functional logic, boundary case errors or similar issues which could be utilized by an attacker to steal funds or drain wallets. That said any errors may be submitted by wardens for review and potential reward as per the normal issue impact prioritization. Gas optimizations are welcome, please see [Gas Optimization Notes](#gas-optimization-nodes).
+We would like wardens to focus on any core functional logic (Ethereum -> SKALE, SKALE -> Ethereum, SKALE -> SKALE), boundary case errors or similar issues which could be utilized by an attacker to steal funds or drain wallets.
+
+Gas optimizations are welcome, please see [Gas Optimization Notes](#gas-optimization-notes).
 
 If wardens are unclear on which areas to look at or which areas are important please feel free to ask in the contest Discord channel.
