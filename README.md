@@ -494,3 +494,9 @@ We would like wardens to focus on any core functional logic (Ethereum -> SKALE, 
 Gas optimizations are welcome, please see [Gas Optimization Notes](#gas-optimization-notes).
 
 If wardens are unclear on which areas to look at or which areas are important please feel free to ask in the contest Discord channel.
+
+## Known Issues
+
+- Large batch transfer of ERC1155 may cause out of gas
+- Outgoing message with large length may cause issues
+- A malicious receiver contract can stuck IMA forever by returning huge revert data
