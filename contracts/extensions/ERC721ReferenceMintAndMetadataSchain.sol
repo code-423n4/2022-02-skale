@@ -27,12 +27,8 @@ import "../schain/tokens/ERC721OnChain.sol";
 import "./interfaces/MessageSender.sol";
 
 
-/**
- * @title Token Manager
- * @dev Runs on SKALE Chains, accepts messages from other chains, and instructs
- * TokenFactory to create clones. When a user exits a SKALE chain, TokenFactory
- * burns tokens.
- */
+// Example of custom extension: runs on a SKALE Chain
+// and allows ERC721 first minted on SKALE to transfer to Ethereum
 contract ERC721ReferenceMintAndMetadataSchain is MessageSender, IERC721ReferenceMintAndMetadataSchain {
 
     address public erc721ContractOnSchain;

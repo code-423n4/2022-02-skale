@@ -127,43 +127,52 @@ Discord handles:
 
 TODO
 
-| Contract Name                                  | Lines of Code |
-| ---------------------------------------------- | ------------- |
-| `MessageProxy.sol`                             |               |
-| `Messages.sol`                                 |               |
-|                                                |               |
-| `mainnet/CommunityPool.sol`                    |               |
-| `mainnet/DepositBox.sol`                       |               |
-| `mainnet/Linker.sol`                           |               |
-| `mainnet/MessageProxyForMainnet.sol`           |               |
-| `mainnet/SkaleManagerClient.sol`               |               |
-| `mainnet/Twin.sol`                             |               |
-|                                                |               |
-| `mainnet/DepositBoxes/DepositBoxEth.sol`       |               |
-| `mainnet/DepositBoxes/DepositBoxERC20.sol`     |               |
-| `mainnet/DepositBoxes/DepositBoxERC721.sol`    |               |
-| `mainnet/DepositBoxes/DepositBoxERC1155.sol`   |               |
-|                                                |               |
-| `schain/CommunityLocker.sol`                   |               |
-| `schain/KeyStorage.sol`                        |               |
-| `schain/MessageProxyForSchain.sol`             |               |
-| `schain/TokenManager.sol`                      |               |
-| `schain/TokenManagerLinker.sol`                |               |
-|                                                |               |
-| `schain/bls/FieldOperations.sol`               |               |
-| `schain/bls/Precompiled.sol`                   |               |
-| `schain/bls/SkaleVerifier.sol`                 |               |
-|                                                |               |
-| `schain/TokenManagers/TokenManagerERC20.sol`   |               |
-| `schain/TokenManagers/TokenManagerERC721.sol`  |               |
-| `schain/TokenManagers/TokenManagerERC1155.sol` |               |
-|                                                |               |
-| `schain/tokens/ERC20OnChain.sol`               |               |
-| `schain/tokens/ERC721OnChain.sol`              |               |
-| `schain/tokens/ERC1155OnChain.sol`             |               |
-| **Total**                                      |               |
+| Contract Name                                          | Lines of Code | Lines of Comment |
+| ------------------------------------------------------ | ------------- | ---------------- |
+| `MessageProxy.sol`                                     | 175           | 313              |
+| `Messages.sol`                                         | 177           | 368              |
+|                                                        |               |                  |
+| `mainnet/CommunityPool.sol`                            | 70            | 128              |
+| `mainnet/DepositBox.sol`                               | 48            | 55               |
+| `mainnet/Linker.sol`                                   | 82            | 96               |
+| `mainnet/MessageProxyForMainnet.sol`                   | 147           | 204              |
+| `mainnet/SkaleManagerClient.sol`                       | 33            | 32               |
+| `mainnet/Twin.sol`                                     | 49            | 46               |
+|                                                        |               |                  |
+| `mainnet/DepositBoxes/DepositBoxEth.sol`               | 93            | 128              |
+| `mainnet/DepositBoxes/DepositBoxERC20.sol`             | 135           | 229              |
+| `mainnet/DepositBoxes/DepositBoxERC721.sol`            | 128           | 203              |
+| `mainnet/DepositBoxes/DepositBoxERC1155.sol`           | 157           | 386              |
+|                                                        |               |                  |
+| `schain/CommunityLocker.sol`                           | 113           | 113              |
+| `schain/KeyStorage.sol`                                | 46            | 67               |
+| `schain/MessageProxyForSchain.sol`                     | 160           | 229              |
+| `schain/TokenManager.sol`                              | 129           | 109              |
+| `schain/TokenManagerLinker.sol`                        | 86            | 87               |
+|                                                        |               |                  |
+| `schain/bls/FieldOperations.sol`                       | 150           | 191              |
+| `schain/bls/Precompiled.sol`                           | 31            | 39               |
+| `schain/bls/SkaleVerifier.sol`                         | 30            | 69               |
+|                                                        |               |                  |
+| `schain/TokenManagers/TokenManagerERC20.sol`           | 112           | 297              |
+| `schain/TokenManagers/TokenManagerERC721.sol`          | 104           | 231              |
+| `schain/TokenManagers/TokenManagerERC1155.sol`         | 138           | 449              |
+|                                                        |               |                  |
+| `schain/tokens/EthErc20.sol`                           | 46            | 28               |
+| `schain/tokens/ERC20OnChain.sol`                       | 34            | 22               |
+| `schain/tokens/ERC721OnChain.sol`                      | 54            | 64               |
+| `schain/tokens/ERC1155OnChain.sol`                     | 46            | 51               |
+|                                                        |               |                  |
+| `extensions/ERC721ReferenceMintAndMetadataMainnet.sol` | 21            | 54               |
+| `extensions/ERC721ReferenceMintAndMetadataSchain.sol`  | 21            | 43               |
+| `extensions/interfaces/MessageProxyClient.sol`         | 19            | 12               |
+| `extensions/interfaces/MessageSender.sol`              | 19            | 11               |
+| `extensions/interfaces/MessageReceiver.sol`            | 20            | 4                |
+|                                                        |               |                  |
+| `thirdparty/ERC1155ReceiverUpgradeableWithoutGap.sol`  | 6             | 25               |
+| **Total**                                              | 2732          | 4458             |
 
-NOTE: contracts in the `extensions/*` folder are example contracts demonstrating how a developer may expand the IMA bridge with any arbitrary logic with MessageProxy.  They are not intended to be a focus for the audit.
+NOTE: contracts in the `extensions/*` folder are example contracts demonstrating how a developer may expand the IMA bridge with any arbitrary logic with MessageProxy.
 
 ## SKALE Network - IMA Bridge
 

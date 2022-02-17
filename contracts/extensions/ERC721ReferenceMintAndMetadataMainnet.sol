@@ -27,7 +27,8 @@ import "../schain/tokens/ERC721OnChain.sol";
 import "./interfaces/MessageReceiver.sol";
 
 
-// This contract runs on the main net and accepts deposits
+// Example of custom extension: runs on Ethereum to transfer ERC721 first minted
+// on SKALE and requests Mainnet contract to mint with metadata. 
 contract ERC721ReferenceMintAndMetadataMainnet is MessageReceiver, IERC721ReferenceMintAndMetadataMainnet {
 
     address public erc721ContractOnMainnet;
