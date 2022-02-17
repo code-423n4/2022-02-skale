@@ -137,7 +137,7 @@ The IMA Bridge consists of four parts:
 3.  Token Manager contracts (on SKALE chains)
 4.  IMA Agent - a containerized service on each SKALE chain node that relays messages between chains.
 
-![overview-diagram](http://www.plantuml.com/plantuml/svg/ZP91QiCm44NtSuh11mX8u-xZaYnAQmYq5n3Aq9ZQKl0ea59ozqgMwABOs5vzwGr-7pHx2MOCjw47vy-Cnt3XaMy3_W36p_g-PniwxmIh0r-zT06V_PsbGYDuE4rJvfDTmAfbaHZnDFhxzyI7gu87GE4lRODDYXEB9xL8z28Xo4MhzzVcxOZsOZg7Qg9YrLpj3__53blZuY_7t3iCQgsuXiUSIHUJtcpIQoQQDr4nqMOJhPdgULDTJFLcKxrcUagclrtQxV9h_xiWIBVf85Qbh7FMALFE196LUGq0UtRdjAo_)
+<img width="829" alt="overview-diagram" src="https://user-images.githubusercontent.com/3477197/154558776-f92af1ab-65f9-430e-8ef9-4a2150d2dfdf.png">
 
 <figcaption>High Level Architecture. Any SKALE chain may be connected with IMA Bridge to Ethereum or another SKALE chain. Here is an example of four SKALE chains where SKALE chains 1 and 3 are connected to Ethereum, and SKALE chain 2 is connected to SKALE chain 1. SKALE chain 4 is not connected to any other chain. The IMA Agent is a separate multiple instance resource that listens and shuttles messages between chains.</figcaption>
 
