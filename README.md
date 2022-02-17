@@ -108,6 +108,11 @@ If you prefer a video walk through of SKALE Network, IMA Bridge contracts and lo
 
 NOTE: contracts in the `extensions/*` folder are example contracts demonstrating how a developer may expand the IMA bridge with any arbitrary logic with MessageProxy.
 
+## Code for audit
+
+Is located https://github.com/skalenetwork/ima-c4-audit
+
+
 ## SKALE Network - IMA Bridge
 
 ### Protocol Overview
@@ -165,7 +170,7 @@ To send NFTs to eth-cat chain, and since there are many nft contracts, eth-dog o
 
 You need nodejs 14 or later and yarn to be installed on your machine
 
-1.  clone [the repo](https://github.com/skalenetwork/IMA)
+1.  clone [the repo](https://github.com/skalenetwork/ima-c4-audit)
 
 2.  run
 
