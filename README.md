@@ -57,6 +57,10 @@ Discord handles:
 -   @Ganna | SKALE#9107
 -   @Dmytro#9331
 
+# Code for audit
+
+Is located https://github.com/skalenetwork/ima-c4-audit
+
 ## Video walk-through of smart-contracts
 
 If you prefer a video walk through of SKALE Network, IMA Bridge contracts and logic, https://youtu.be/BcHLJ9oFgMc
@@ -107,10 +111,6 @@ If you prefer a video walk through of SKALE Network, IMA Bridge contracts and lo
 | **Total**                                              | 2732          | 4458             |
 
 NOTE: contracts in the `extensions/*` folder are example contracts demonstrating how a developer may expand the IMA bridge with any arbitrary logic with MessageProxy.
-
-## Code for audit
-
-Is located https://github.com/skalenetwork/ima-c4-audit
 
 
 ## SKALE Network - IMA Bridge
