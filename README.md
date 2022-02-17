@@ -125,7 +125,7 @@ Discord handles:
 
 ## Video walk-through of smart-contracts
 
-TODO
+If you prefer a video walk through of SKALE Network, IMA Bridge contracts and logic, https://youtu.be/BcHLJ9oFgMc
 
 | Contract Name                                          | Lines of Code | Lines of Comment |
 | ------------------------------------------------------ | ------------- | ---------------- |
