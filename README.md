@@ -1,7 +1,7 @@
 # SKALE contest details
 
--   $118,750 USDC main award pot
--   $6,250 USDC gas optimization award pot
+-   $109,250 USDC main award pot
+-   $5,750 USDC gas optimization award pot
 -   Join [C4 Discord](https://discord.gg/code4rena) to register
 -   Submit findings [using the C4 form](https://code4rena.com/contests/2022-02-skale-contest/submit)
 -   [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
